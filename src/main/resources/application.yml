@@ -1,0 +1,39 @@
+spring:
+  ai:
+    mcp:
+      client:
+        toolcallback:
+          enabled: true #该配置会自动配置ToolCallbackProvider
+        enabled: true
+        name: mcp-client
+        version: 1.0.0
+        type: SYNC
+        request-timeout: 20000 #如果太短会出现server创建的慢导致服务启动出现问题，
+        stdio:
+#          connections:
+#            filesystem:
+#              command: npx
+#              args: -y,@modelcontextprotocol/server-filesystem,.
+#            brave-search:
+#              command: npx
+#              args: -y,@modelcontextprotocol/server-brave-search
+          root-change-notification: true
+          servers-configuration: classpath:/mcp-server-config.json   #一定要配置环境变量
+    model:
+      chat: openai #选择要使用的模型
+    openai:
+      api-key: ${api-key}
+      base-url: https://api.deepseek.com
+      chat:
+        enabled: true   #这个配置已经废弃
+        options:
+          model: deepseek-chat
+    ollama:
+      base-url: ${base-url}
+      chat:
+        enabled: false    #这个配置已经废弃
+        model: deepseek-r1:70b
+        options:
+          model: deepseek-r1:70b              # 选择模型 (可用 gpt-3.5-turbo)
+          max-tokens: 1000                    # 限制最大 token 数
+          temperature: 0.7                    # 创造力参数（0-1）
