@@ -53,7 +53,7 @@ public class ClientController {
             chatClient = ChatClient.builder(openAiChatModel)
                     .defaultSystem("你可以使用mcp的工具来处理消息")
                     .defaultTools(methodToolCallbackProvider.getToolCallbacks())
-                    //.defaultTools(syncMcpToolCallbackProvider.getToolCallbacks())
+                    .defaultTools(syncMcpToolCallbackProvider.getToolCallbacks())
                     .defaultAdvisors(new MessageChatMemoryAdvisor(new InMemoryChatMemory()))
                     .build();
         }
